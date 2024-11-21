@@ -21,7 +21,19 @@ void	stack_init(t_stack_node **a, char **argv)
 	i = 0;
 	while (argv[i])
 	{
+		if (error_digit_and_sign(argv[i]))
+		{
+
+		}
 		nb = ft_atoi(argv[i]);
+		if (nb > INT_MAX || nb < INT_MIN)
+		{
+
+		}
+		if (error_repetition(a, nb))
+		{
+
+		}
 		append_node(a, (int)nb);
 		i++;
 	}

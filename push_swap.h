@@ -13,6 +13,8 @@
 #ifndef PUSH_SWAP_H
 #define PUSH_SWAP_H
 
+#include <limits.h>
+
 typedef struct	s_stack_node
 {
 	int	value;
@@ -28,5 +30,7 @@ typedef struct	s_stack_node
 
 static t_stack_node	find_last_node(t_stack_node *head);
 void	append_node(t_stack_node **stack, int nbr);
+int	error_digit_and_sign(char *str_nb);
+int	error_repetition(t_stack_node *a, int nb);
 
 #endif
