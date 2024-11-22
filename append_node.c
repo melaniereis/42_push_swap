@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static t_stack_node	*find_last_node(t_stack_node *head);
+t_stack_node	*find_last_node(t_stack_node *head);
 
 void	append_node(t_stack_node **stack, int nbr)
 {
@@ -39,7 +39,7 @@ void	append_node(t_stack_node **stack, int nbr)
 	}
 }
 
-static t_stack_node	*find_last_node(t_stack_node *head)
+t_stack_node	*find_last_node(t_stack_node *head)
 {
 	if (head == NULL)
 		return (NULL);

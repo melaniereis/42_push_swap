@@ -33,6 +33,7 @@ typedef struct	s_stack_node
 
 void	stack_init(t_stack_node **a, char **argv, int split_flag);
 void	append_node(t_stack_node **stack, int nbr);
+t_stack_node	*find_last_node(t_stack_node *head);
 
 int	error_digit_and_sign(char *str_nb);
 int	error_repetition(t_stack_node *a, int nb);
@@ -46,5 +47,9 @@ void	ss(t_stack_node **a, t_stack_node **b);
 
 void	pa(t_stack_node **a, t_stack_node **b);
 void	pb(t_stack_node **b, t_stack_node **a);
+
+void	ra(t_stack_node **a);
+void	rb(t_stack_node **b);
+void	rr(t_stack_node **a, t_stack_node **b);
 
 #endif

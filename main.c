@@ -32,7 +32,7 @@ int	main(int argc, char **argv)
 		stack_init(&a, argv + 1, split_flag);
 	
 	// Initialize stack b
-    char *arr[] = {"90", "23", NULL};
+    char *arr[] = {NULL};
     stack_init(&b, arr, 0);
 
     // Print stack a
@@ -50,7 +50,7 @@ int	main(int argc, char **argv)
         ft_printf("%d\n", temp_b->value);
         temp_b = temp_b->next_node;
     }
-	pa(&a,&b);
+	rr(&a,&b);
 	// Print stack a
     t_stack_node *temp_aa= a;
     while(temp_aa)
