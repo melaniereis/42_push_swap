@@ -16,8 +16,8 @@ t_stack_node	*find_last_node(t_stack_node *head);
 
 void	append_node(t_stack_node **stack, int nbr)
 {
-	t_stack_node *node;
-	t_stack_node *last_node;
+	t_stack_node	*node;
+	t_stack_node	*last_node;
 
 	if (!stack)
 		return ;

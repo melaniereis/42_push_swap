@@ -14,13 +14,13 @@
 
 static void	reverse_rotate(t_stack_node **stack)
 {
-	t_stack_node *head;
-	t_stack_node *last;
-	t_stack_node *new_last;
+	t_stack_node	*head;
+	t_stack_node	*last;
+	t_stack_node	*new_last;
 
 	if (!stack || !*stack)
 		return ;
-	if ((*stack) -> next_node == NULL)
+	if ((*stack)->next_node == NULL)
 		return ;
 	head = *stack;
 	last = find_last_node(*stack);
@@ -28,7 +28,7 @@ static void	reverse_rotate(t_stack_node **stack)
 	new_last = last -> prev_node;
 	new_last -> next_node = NULL;
 	*stack = last;
-	(*stack) -> prev_node = NULL;
+	(*stack)->prev_node = NULL;
 	head -> prev_node = last;
 }
 

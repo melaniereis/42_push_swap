@@ -74,7 +74,7 @@ void	free_stack(t_stack_node **stack)
 	*stack = NULL;
 }
 
-void free_all_message(t_stack_node **a, char **argv, int split_flag)
+void	free_all_message(t_stack_node **a, char **argv, int split_flag)
 {
 	free_stack(a);
 	if (argv != NULL && split_flag)
