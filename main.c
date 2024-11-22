@@ -50,7 +50,7 @@ int	main(int argc, char **argv)
         ft_printf("%d\n", temp_b->value);
         temp_b = temp_b->next_node;
     }
-	rr(&a,&b);
+	rrr(&a,&b);
 	// Print stack a
     t_stack_node *temp_aa= a;
     while(temp_aa)

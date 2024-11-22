@@ -22,7 +22,7 @@ void	stack_init(t_stack_node **a, char **argv, int split_flag)
 	{
 		if (error_digit_and_sign(argv[i]))
 			free_all_message(a, argv, split_flag);
-		nb = ft_atoi(argv[i]);
+		nb = ft_atol(argv[i]);
 		if (nb > INT_MAX || nb < INT_MIN)
 			free_all_message(a, argv, split_flag);
 		if (error_repetition(*a, nb))
