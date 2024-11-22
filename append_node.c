@@ -13,7 +13,7 @@
 #include "push_swap.h"
 #include "libft/includes/libft.h"
 
-static t_stack_node	find_last_node(t_stack_node *head);
+static t_stack_node	*find_last_node(t_stack_node *head);
 
 void	append_node(t_stack_node **stack, int nbr)
 {
