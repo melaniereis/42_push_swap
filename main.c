@@ -30,12 +30,43 @@ int	main(int argc, char **argv)
 	}
 	else
 		stack_init(&a, argv + 1, split_flag);
-	sa(&a);
-	while(a)
-	{
-		ft_printf("%d\n", a -> value);
-		a = a -> next_node;
-	}
+	
+	// Initialize stack b
+    char *arr[] = {"90", "23", NULL};
+    stack_init(&b, arr, 0);
+
+    // Print stack a
+    t_stack_node *temp_a = a;
+    while(temp_a)
+    {
+        ft_printf("%d\n", temp_a->value);
+        temp_a = temp_a->next_node;
+    }
+
+    // Print stack b
+    t_stack_node *temp_b = b;
+    while(temp_b)
+    {
+        ft_printf("%d\n", temp_b->value);
+        temp_b = temp_b->next_node;
+    }
+	pa(&a,&b);
+	// Print stack a
+    t_stack_node *temp_aa= a;
+    while(temp_aa)
+    {
+        ft_printf("%d\n", temp_aa->value);
+        temp_aa = temp_aa->next_node;
+    }
+
+    // Print stack b
+    t_stack_node *temp_bb = b;
+    while(temp_bb)
+    {
+        ft_printf("%d\n", temp_bb->value);
+        temp_bb = temp_bb->next_node;
+    }
+
 	free_stack(&a);
 	if (split_flag)
 		free_matrix(argv);
