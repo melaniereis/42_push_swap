@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
-#include "libft/includes/libft.h"
 
 int	main(int argc, char **argv)
 {
@@ -31,6 +30,7 @@ int	main(int argc, char **argv)
 	}
 	else
 		stack_init(&a, argv + 1, split_flag);
+	sa(&a);
 	while(a)
 	{
 		ft_printf("%d\n", a -> value);

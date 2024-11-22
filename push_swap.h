@@ -16,6 +16,7 @@
 #include <limits.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include "libft/includes/libft.h"
 
 typedef struct	s_stack_node
 {
@@ -32,10 +33,15 @@ typedef struct	s_stack_node
 
 void	stack_init(t_stack_node **a, char **argv, int split_flag);
 void	append_node(t_stack_node **stack, int nbr);
+
 int	error_digit_and_sign(char *str_nb);
 int	error_repetition(t_stack_node *a, int nb);
 void	free_matrix(char **argv);
 void	free_stack(t_stack_node **stack);
 void free_all_message(t_stack_node **a, char **argv, int split_flag);
+
+void	sa(t_stack_node **a);
+void	sb(t_stack_node **b);
+void	ss(t_stack_node **a, t_stack_node **b);
 
 #endif

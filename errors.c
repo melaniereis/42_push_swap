@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "libft/includes/libft.h"
 
 int	error_digit_and_sign(char *str_nb)
 {
