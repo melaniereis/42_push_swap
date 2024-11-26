@@ -30,7 +30,17 @@ int	main(int argc, char **argv)
 	}
 	else
 		stack_init(&a, argv + 1, split_flag);
-	
+	if (!is_stack_sorted(a))
+	{
+		if (stack_len(a) == 2)
+			if(a -> value > a -> next -> value)
+				sa(&a);
+		if (stack_len(a) == 3)
+			tiny_sort(&a);
+		if (stack_len(a) > 3)
+			push_swap(&a, &b);
+	}
+	/*
 	// Initialize stack b
     char *arr[] = {NULL};
     stack_init(&b, arr, 0);
@@ -66,7 +76,7 @@ int	main(int argc, char **argv)
         ft_printf("%d\n", temp_bb->value);
         temp_bb = temp_bb->next_node;
     }
-
+	*/
 	free_stack(&a);
 	if (split_flag)
 		free_matrix(argv);
