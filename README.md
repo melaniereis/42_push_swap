@@ -63,7 +63,7 @@ Clone the repository and compile the program:
 ```bash
 git clone https://github.com/yourusername/push_swap.git
 cd push_swap
-make CC=cc
+make
 ```
 ## 🖥️ Usage
 
