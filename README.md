@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Funny Sorting GIF](https://media.giphy.com/media/your-funny-gif-url.gif)
+![Funny Sorting GIF](https://c.tenor.com/jhDKfwDdMfwAAAAd/tenor.gif)
 
 Welcome to **Push Swap**! This project is my implementation of the Push Swap algorithm, part of the **42 coding school** curriculum. It focuses on sorting a stack of integers using a limited set of operations, utilizing the **Turkish algorithm** for optimal performance.
 
