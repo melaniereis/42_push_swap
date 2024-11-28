@@ -65,13 +65,6 @@ void sort_stacks(t_stack_node **a, t_stack_node **b) {
     rotate_a_if_needed(a);
 }
 
-void parse_parameters(int argc, char **argv) {
-    // Implementation for parsing command-line arguments or input parameters.
-}
-
-void create_stack_a(t_stack_node **a) {
-    // Implementation for creating stack A from input values.
-}
 
 void add_rank(t_stack_node *stack) {
     int rank = 1;
@@ -224,42 +217,6 @@ t_stack_node *find_min(t_stack_node *stack) {
 	return min;
 }
 
-void pb(t_stack_node **b, t_stack_node **a) {
-	if (*a == NULL)
-		return;
-
-	t_stack_node *node_to_push = *a;
-	*a = (*a)->next_node;
-
-	if (*b == NULL) {
-		*b = node_to_push;
-		node_to_push->next_node = NULL;
-		node_to_push->prev_node = NULL;
-	} else {
-		node_to_push->next_node = *b;
-		(*b)->prev_node = node_to_push;
-		node_to_push->prev_node = NULL;
-		*b = node_to_push;
-	}
-}
-
-void pa(t_stack_node **a, t_stack_node **b) {
-	if (*b == NULL)
-		return;
-
-	t_stack_node *node_to_push = *b;
-	*b = (*b)->next_node;
-
-	if (*b != NULL)
-		(*b)->prevnode= NULL;
-
-	node_to_push->nextnode= *A;
-
-	if (*A != NULL)
-		(*A)->prevnode= node_to_push;
-
-	*A= node_to_push;
-}
 
 void finish_rotation(t_stackNode** stack,int* cost,char stack_name){
 	while(*cost!=0){
