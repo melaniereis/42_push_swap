@@ -33,12 +33,13 @@ int	main(int argc, char **argv)
 	if (!is_stack_sorted(a))
 	{
 		if (stack_len(a) == 2)
-			if(a -> value > a -> next -> value)
+			if(a -> value > a -> next_node -> value)
 				sa(&a);
 		if (stack_len(a) == 3)
 			tiny_sort(&a);
 		if (stack_len(a) > 3)
-			push_swap(&a, &b);
+			//push_swap(&a, &b);
+			return 0;
 	}
 	/*
 	// Initialize stack b
@@ -77,6 +78,13 @@ int	main(int argc, char **argv)
         temp_bb = temp_bb->next_node;
     }
 	*/
+	// Print stack a
+    t_stack_node *temp_aa= a;
+    while(temp_aa)
+    {
+        ft_printf("%d\n", temp_aa->value);
+        temp_aa = temp_aa->next_node;
+    }
 	free_stack(&a);
 	if (split_flag)
 		free_matrix(argv);

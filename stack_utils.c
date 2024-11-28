@@ -47,3 +47,31 @@ t_stack_node	*find_last_node(t_stack_node *head)
 		head = head -> next_node;
 	return (head);
 }
+
+int	is_stack_sorted(t_stack_node *head)
+{
+	if (head == NULL)
+		return (1);
+	while (head -> next_node)
+	{
+		if (head -> value > head -> next_node -> value)
+			return (0);
+		head = head -> next_node;
+	}
+	return (1);
+}
+
+int	stack_len(t_stack_node *head)
+{
+	int	counter;
+
+	counter = 0;
+	if (head == NULL)
+		return (counter);
+	while (head)
+	{
+		counter++;
+		head = head -> next_node;
+	}
+	return (counter);
+}

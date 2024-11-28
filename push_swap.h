@@ -34,6 +34,8 @@ typedef struct s_stack_node
 void			stack_init(t_stack_node **a, char **argv, int split_flag);
 void			append_node(t_stack_node **stack, int nbr);
 t_stack_node	*find_last_node(t_stack_node *head);
+int	is_stack_sorted(t_stack_node *head);
+int	stack_len(t_stack_node *head);
 
 int				error_digit_and_sign(char *str_nb);
 int				error_repetition(t_stack_node *a, int nb);
@@ -55,4 +57,8 @@ void			rr(t_stack_node **a, t_stack_node **b);
 void			rra(t_stack_node **a);
 void			rrb(t_stack_node **b);
 void			rrr(t_stack_node **a, t_stack_node **b);
+
+void    tiny_sort(t_stack_node **a);
+t_stack_node *find_highest_node(t_stack_node *a);
 #endif
+
