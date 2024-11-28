@@ -36,10 +36,9 @@ int	main(int argc, char **argv)
 			if(a -> value > a -> next_node -> value)
 				sa(&a);
 		if (stack_len(a) == 3)
-			tiny_sort(&a);
+			sort_three(&a);
 		if (stack_len(a) > 3)
-			//push_swap(&a, &b);
-			return 0;
+			sort_stacks(&a, &b);
 	}
 	/*
 	// Initialize stack b

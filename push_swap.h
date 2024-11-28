@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 13:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2024/11/21 14:54:24 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/11/28 12:15:42 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,11 @@
 typedef struct s_stack_node
 {
 	int					value;
-	int					current_position;
-	int					final_index;
-	int					push_price;
-	//bool	above_median;
-	//bool	cheapest;
-	struct s_stack_node	*target_node;
+	int					index;
+	int					pos;
+	int					target_pos;
+	int					cost_a;
+	int					cost_b;
 	struct s_stack_node	*next_node;
 	struct s_stack_node	*prev_node;
 }		t_stack_node;
@@ -58,7 +57,7 @@ void			rra(t_stack_node **a);
 void			rrb(t_stack_node **b);
 void			rrr(t_stack_node **a, t_stack_node **b);
 
-void    tiny_sort(t_stack_node **a);
+void    sort_three(t_stack_node **a);
 t_stack_node *find_highest_node(t_stack_node *a);
 #endif
 

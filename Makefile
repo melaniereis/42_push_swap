@@ -50,7 +50,7 @@ LIBFT_ARC = ${LIBFT_PATH}/libft.a
 # Source files for main library
 SRCS = ${addprefix ${SRC_PATH}/, errors.c  main.c rotate_commands.c \
 	   swap_commands.c stack_utils.c push_commands.c push_swap_commands.c \
-	   reverse_rotate_commands.c stack_init.c tiny_sort.c}
+	   reverse_rotate_commands.c stack_init.c sort_three.c}
 SRCS_BONUS = ${addprefix ${BONUS_PATH}/, }
 
 # Object files derived from source files

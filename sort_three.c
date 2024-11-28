@@ -12,24 +12,16 @@
 
 #include "push_swap.h"
 
-void    tiny_sort(t_stack_node **a)
+void    sort_three(t_stack_node **a)
 {
     t_stack_node    *highest_node;
     
     highest_node = find_highest_node(*a);
     if (*a == highest_node)
-    {
     	ra(a);
-    	if ((*a)->value > (*a)->next_node->value)
-    		sa(a);
-    }
     else if ((*a)->next_node == highest_node)
-    {
     	rra(a);
-    	if ((*a)->value > (*a)->next_node->value)
-    		sa(a);
-    }
-    else if ((*a)->value > (*a)->next_node->value)
+    if ((*a)->value > (*a)->next_node->value)
     	sa(a);
 }
 
