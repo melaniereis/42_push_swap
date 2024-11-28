@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 13:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2024/11/28 12:15:42 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/11/28 15:28:55 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,8 @@ void			rrr(t_stack_node **a, t_stack_node **b);
 
 void    sort_three(t_stack_node **a);
 t_stack_node *find_highest_node(t_stack_node *a);
+
+void	sort_stacks(t_stack_node **a, t_stack_node **b);
+void	set_indices(t_stack_node **a);
 #endif
 
