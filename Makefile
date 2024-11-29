@@ -49,8 +49,9 @@ LIBFT_ARC = ${LIBFT_PATH}/libft.a
 
 # Source files for main library
 SRCS = ${addprefix ${SRC_PATH}/, errors.c  main.c rotate_commands.c \
-	   swap_commands.c stack_utils.c push_commands.c push_swap_commands.c \
-	   reverse_rotate_commands.c stack_init.c sort_three.c}
+	   swap_commands.c stack_utils.c push_commands.c \
+	   reverse_rotate_commands.c stack_init.c sort_three.c sort_stacks.c\
+	   set_indices.c}
 SRCS_BONUS = ${addprefix ${BONUS_PATH}/, }
 
 # Object files derived from source files
@@ -62,7 +63,7 @@ OBJS_BONUS = ${addprefix ${BUILD_PATH}/, ${notdir ${SRCS_BONUS:.c=.o}}}
 #------------------------------------------------------------------------------#
 
 CC = cc                           # Compiler to use
-CCFLAGS = -Wall -Wextra -Werror   # Compiler flags for warnings and errors
+CCFLAGS = -Wall -Wextra -Werror -g # Compiler flags for warnings/errors/debugging
 LDFLAGS = -L${LIBFT_PATH} -lft
 AR = ar rcs                       # Archive command to create static libraries
 RM = rm -fr                       # Command to remove files/directories forcefully

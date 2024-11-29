@@ -22,7 +22,7 @@ static void	push(t_stack_node **dest, t_stack_node **src)
 	*src = first_src->next_node;
 	if (*src)
 		(*src)->prev_node = NULL;
-	if (!*dest)
+	if (!dest || !*dest)
 	{
 		*dest = first_src;
 		first_src->next_node = NULL;
@@ -34,6 +34,13 @@ static void	push(t_stack_node **dest, t_stack_node **src)
 		*dest = first_src;
 	}
 	first_src->prev_node = NULL;
+	/*t_stack_node *current = *dest;
+	while (current)
+	{
+		printf("%d\n", current -> value);
+		current = current -> next_node;
+	}
+	printf("-------------------\n");*/
 }
 
 void	pa(t_stack_node **a, t_stack_node **b)

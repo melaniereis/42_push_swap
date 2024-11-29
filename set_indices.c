@@ -34,10 +34,11 @@ void	set_indices(t_stack_node **a)
 		temp = temp -> next_node;
 	}
 	sort_arr(arr, size);
-	while(*a)
+	temp = *a;
+	while (temp)
 	{
-		(*a) -> index = find_index(arr, size, (*a) -> value);
-		(*a) = (*a) -> next_node;
+		temp -> index = find_index(arr, size, temp -> value);
+		temp = temp -> next_node;
 	}
 	free(arr);
 }

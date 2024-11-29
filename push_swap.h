@@ -16,16 +16,13 @@
 # include <limits.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
 # include "libft/includes/libft.h"
 
 typedef struct s_stack_node
 {
 	int					value;
 	int					index;
-	int					pos;
-	int					target_pos;
-	int					cost_a;
-	int					cost_b;
 	struct s_stack_node	*next_node;
 	struct s_stack_node	*prev_node;
 }		t_stack_node;
@@ -60,7 +57,7 @@ void			rrr(t_stack_node **a, t_stack_node **b);
 void    sort_three(t_stack_node **a);
 t_stack_node *find_highest_node(t_stack_node *a);
 
-void	sort_stacks(t_stack_node **a, t_stack_node **b);
+void	sort_stacks(t_stack_node **a, t_stack_node **b, int size);
 void	set_indices(t_stack_node **a);
 #endif
 

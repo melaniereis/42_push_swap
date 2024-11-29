@@ -38,7 +38,7 @@ int	main(int argc, char **argv)
 		if (stack_len(a) == 3)
 			sort_three(&a);
 		if (stack_len(a) > 3)
-			sort_stacks(&a, &b);
+			sort_stacks(&a, &b, stack_len(a));
 	}
 	/*
 	// Initialize stack b
@@ -85,6 +85,7 @@ int	main(int argc, char **argv)
         temp_aa = temp_aa->next_node;
     }
 	free_stack(&a);
+	free_stack(&b);
 	if (split_flag)
 		free_matrix(argv);
 	return (0);
