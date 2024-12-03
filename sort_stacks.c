@@ -17,15 +17,13 @@ void rotate_b_if_needed(t_stack_node **b, int total_size);
 void move_greater_than_avg_to_b(t_stack_node **a, t_stack_node **b);
 int get_avg_value(t_stack_node *a);
 void move_element_based_on_avg(t_stack_node **a, t_stack_node **b, int avg_index);
-void phase_two(t_stack_node **a, t_stack_node **b);
-void phase_three(t_stack_node **a, int size);
-int get_position(t_stack_node *stack, int index);
-int get_target_position(int index, t_stack_node *stack);
-void rotate_both(t_stack_node **a, t_stack_node **b, int *cost_a, int *cost_b);
-void reverse_rotate_both(t_stack_node **a, t_stack_node **b, int *cost_a, int *cost_b);
-void do_move(t_stack_node **a, t_stack_node **b, int cost_a, int cost_b);
-int	abs_val(int n);
 int	get_third_largest_value(t_stack_node *a);
+void phase_two(t_stack_node **a, t_stack_node **b);
+void set_positions(t_stack_node *a, t_stack_node *b);
+void set_target_node_for_b(t_stack_node *a, t_stack_node *b);
+void do_best_move(t_stack_node **a, t_stack_node **b);
+t_stack_node *find_min_node(t_stack_node *stack);
+void phase_three(t_stack_node **a, int size);
 
 void	sort_stacks(t_stack_node **a, t_stack_node **b, int size)
 {
@@ -33,21 +31,7 @@ void	sort_stacks(t_stack_node **a, t_stack_node **b, int size)
 	//t_stack_node	*current_b;
 	set_indices(a);
 	phase_one(a, b, size);
-	t_stack_node *current = *a;
-    	while (current)
-	{
-		printf("%d\n", current -> value);
-		current = current -> next_node;
-	}
-	printf("--------------------\n");
-	t_stack_node *current_b = *b;
-    	while (current_b)
-	{
-		printf("%d\n", current_b -> value);
-		current_b = current_b -> next_node;
-	}
-	printf("--------------------\n");
-	/*current = *a;
+		/*current = *a;
 	while (current)
 	{
 		printf("%d\n", current -> value);
@@ -61,8 +45,9 @@ void	sort_stacks(t_stack_node **a, t_stack_node **b, int size)
 		current = current -> next_node;
 	}
 	printf("--------------------\n");
-	phase_two(a, b);
-	current = *a;
+	*/
+	//phase_two(a, b);
+	/*current = *a;
 	while (current)
 	{
 		printf("%d\n", current -> value);
@@ -193,32 +178,305 @@ int	get_third_largest_value(t_stack_node *a)
 }
 
 
-void	phase_two(t_stack_node **a, t_stack_node **b)
+/*void	phase_two(t_stack_node **a, t_stack_node **b)
 {
-	t_stack_node	*tmp;
-	int	cost_a;
-	int cost_b;
-	int cheapest_cost;
-	int cheapest_cost_a;
-	int cheapest_cost_b;
-
 	while (*b)
 	{
-		cheapest_cost = INT_MAX;
-		tmp = *b;
-		while (tmp)
+		set_positions(*a, *b);
+		set_target_node_for_b(*a, *b);
+		do_best_move(a, b);
+	}
+}
+
+t_stack_node	*find_min_node(t_stack_node *stack)
+{
+	t_stack_node	*min_node;
+	int				min_value;
+
+	min_node = stack;
+	min_value = stack->value;
+	while (stack)
+	{
+		if (stack->value < min_value)
 		{
-			cost_b = get_position(*b, tmp -> index);
-			cost_a = get_target_position (tmp -> index, *a);
-			if (abs_val(cost_a) + abs_val(cost_b) < cheapest_cost)
-			{
-				cheapest_cost = abs_val(cost_a) + abs_val(cost_b);
-				cheapest_cost_a = cost_a;
-				cheapest_cost_b = cost_b;
-			}
-			tmp = tmp -> next_node;
+			min_value = stack->value;
+			min_node = stack;
 		}
-		do_move(a, b, cheapest_cost_a, cheapest_cost_b);
+		stack = stack->next_node;
+	}
+	return (min_node);
+}
+
+void	set_target_node_for_b(t_stack_node *a, t_stack_node *b)
+{
+	t_stack_node	*current_b;
+	t_stack_node	*current_a;
+	t_stack_node	*target;
+	int				best_match_index;
+
+	current_b = b;
+	while (current_b)
+	{
+		best_match_index = INT_MAX;
+		current_a = a;
+		while (current_a)
+		{
+			if (current_a->value > current_b->value
+				&& current_a->value < best_match_index)
+			{
+				best_match_index = current_a->value;
+				target = current_a;
+			}
+			current_a = current_a->next_node;
+		}
+		if (best_match_index == INT_MAX)
+			current_b->target_node = find_min_node(a);
+		else
+			current_b->target_node = target;
+		current_b = current_b->next_node;
+	}
+}
+
+int	ft_max_int(int a, int b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
+
+int	ft_min_int(int a, int b)
+{
+	if (a < b)
+		return (a);
+	return (b);
+}
+
+
+int	cost_optimizer(t_stack_node *a, t_stack_node *b, t_stack_node *node)
+{
+	int	size_a;
+	int	size_b;
+	int	raw_cost;
+	int	rr_cost;
+	int	rrr_cost;
+
+	size_a = stack_len(a);
+	size_b = stack_len(b);
+	rr_cost = ft_max_int(node->, node->target_node->position);
+	rrr_cost = ft_max_int((size_a - node->position) % \
+	size_a, (size_b - node->target_node->position) % size_b);
+	raw_cost = ft_min_int(size_a - node->position, node->position) \
+	+ ft_min_int(size_b - node->target_node->position, node->target_node->position);
+	if (rr_cost < rrr_cost && rr_cost < raw_cost)
+		return (cost_rr(node));
+	else if (rrr_cost < rr_cost && rrr_cost < raw_cost)
+		return (cost_rrr(a, b, node));
+	else if (raw_cost <= rr_cost && raw_cost <= rrr_cost)
+		return (cost_raw(a,b, node));
+}
+
+#define HOLD    0
+#define RA      1  // Rotate A
+#define RB      2  // Rotate B
+#define RRA     3  // Reverse Rotate A
+#define RRB     4  // Reverse Rotate B
+
+int cost_raw(t_stack_node *a, t_stack_node *b, t_stack_node *node)
+{
+    int size_a = stack_len(a);  // Total size of stack a
+    int size_b = stack_len(b);  // Total size of stack b
+    
+    if (!node)
+        return (0);
+    
+    // Calculate cost for stack A
+    if (node->position == 0) {
+        node->move_a = HOLD;
+    } else if (node->position <= size_a / 2) {
+        node->move_a = RA;  // Rotate A
+        node->cost_a = node->position;
+    } else {
+        node->move_a = RRA; // Reverse Rotate A
+        node->cost_a = size_a - node->position;
+    }
+
+    // Calculate cost for stack B
+    if (node->target_node->position == 0) {
+        node->move_b = HOLD;
+    } else if (node->target_node->position <= size_b / 2) {
+        node->move_b = RB;  // Rotate B
+        node->cost_b = node->target_node->position;
+    } else {
+        node->move_b = RRB;  // Reverse Rotate B
+        node->cost_b = size_b - node->target_node->position;
+    }
+
+    return (1);
+}
+int cost_rr(t_stack_node *a, t_stack_node *b, t_stack_node *node)
+{
+    int size_a = stack_len(a);
+    int size_b = stack_len(b);
+    
+    if (!node)
+        return (0);
+    
+    // Calculate rotation for stack A
+    if (node->position == 0) {
+        node->move_a = HOLD;
+    } else {
+        node->move_a = RA;  // Rotate A
+        node->cost_a = node->position;
+    }
+
+    // Calculate rotation for stack B
+    if (node->target_node->position == 0) {
+        node->move_b = HOLD;
+    } else {
+        node->move_b = RB;  // Rotate B
+        node->cost_b = node->target_node->position;
+    }
+
+    return (1);
+}
+
+int cost_rrr(t_stack_node *a, t_stack_node *b, t_stack_node *node)
+{
+    int size_a = stack_len(a);
+    int size_b = stack_len(b);
+    
+    if (!node)
+        return (0);
+
+    // Calculate reverse rotation for stack A
+    if (node->position == 0) {
+        node->move_a = HOLD;
+    } else {
+        node->move_a = RRA;  // Reverse Rotate A
+        node->cost_a = size_a - node->position;
+    }
+
+    // Calculate reverse rotation for stack B
+    if (node->target_node->position == 0) {
+        node->move_b = HOLD;
+    } else {
+        node->move_b = RRB;  // Reverse Rotate B
+        node->cost_b = size_b - node->target_node->position;
+    }
+
+    return (1);
+}
+
+int cost_to_pa(t_stack_node *a, t_stack_node *node)
+{
+    int cost = 0;
+    t_stack_node *cur = a;
+    
+    if (!a || !node)
+        return (0);
+    
+    // If node's value is greater than the max in a or less than the min in a
+    if (node->value > find_max_value(a) || node->value < find_min_value(a))
+    {
+        // Move from top to bottom of the stack
+        while (cur->next_node && cur->value < node->value && cost++ < stack_len(a))
+            cur = cur->next_node;
+        
+        // Calculate the rotation cost for stack a
+        if (cost <= stack_len(a) / 2)
+        {
+            node->move_a = RA;  // Rotate A
+            node->cost_a = cost; // Number of rotations
+        }
+        else
+        {
+            node->move_a = RRA; // Reverse Rotate A
+            node->cost_a = stack_len(a) - cost; // Reverse number of rotations
+        }
+    }
+    else
+    {
+        // Move from bottom to top of the stack
+        while (cur && cur->value != find_min_value(a) && cost++ < stack_len(a))
+            cur = cur->next_node;
+        
+        while (cur && cur->value < node->value && cur->next_node && cur->next_node->value < node->value && cost++ < stack_len(a))
+            cur = cur->next_node;
+        
+        // Calculate the rotation cost for stack a
+        if (cost <= stack_len(a) / 2)
+        {
+            node->move_a = RA;  // Rotate A
+            node->cost_a = cost; // Number of rotations
+        }
+        else
+        {
+            node->move_a = RRA; // Reverse Rotate A
+            node->cost_a = stack_len(a) - cost; // Reverse number of rotations
+        }
+    }
+
+    return (1);
+}
+
+int find_min_value(t_stack_node *a)
+{
+    int min_value = INT_MAX;
+    t_stack_node *current = a;
+    
+    while (current)
+    {
+        if (current->value < min_value)
+            min_value = current->value;
+        current = current->next_node;
+    }
+    
+    return min_value;
+}
+
+int find_max_value(t_stack_node *a)
+{
+    int max_value = INT_MIN;
+    t_stack_node *current = a;
+    
+    while (current)
+    {
+        if (current->value > max_value)
+            max_value = current->value;
+        current = current->next_node;
+    }
+    
+    return max_value;
+}
+
+void	do_best_move(t_stack_node **a, t_stack_node **b)
+{
+	t_stack_node	*current;
+	t_stack_node	*best_node;
+	int				best_cost;
+	int				current_cost;
+	int				size_a;
+	int				size_b;
+
+	current = *b;
+	best_node = NULL;
+	best_cost = INT_MAX;
+	size_a = stack_len(*a);
+	size_b = stack_len(*b);
+	while (current)
+	{
+		current_cost = cost_optimizer(*a, *b, current);
+		if (current_cost < best_cost)
+		{
+			best_cost = current_cost;
+			best_node = current;
+		}
+		current = current->next_node;
+	}
+	if (best_node)
+	{
+		execute_moves(a, b, best_node, size_a, size_b);
+		pa(a, b);
 	}
 }
 
@@ -245,102 +503,25 @@ void	phase_three(t_stack_node **a, int size)
 	}
 }
 
-int	abs_val(int n)
+void	set_positions(t_stack_node *a, t_stack_node *b)
 {
-	return (n * (n >= 0) + (-n) * (n < 0));
-}
+	t_stack_node	*current;
+	int				position;
 
-int get_position(t_stack_node *stack, int index)
-{
-    int position;
-    t_stack_node *current;
-
-    position = 0;
-    current = stack;
-    while (current != NULL)
-    {
-        if (current->index == index)
-            return (position);
-        current = current->next_node;
-        position++;
-    }
-    return (-1);
-}
-
-int	get_target_position(int index, t_stack_node *stack)
-{
-	int	target_pos;
-	int min_index;
-	int min_pos;
-
-	target_pos = 0;
-	min_index = INT_MAX;
-	min_pos = 0;
-	while (stack)
+	position = 0;
+	current = a;
+	while (current)
 	{
-		if (stack -> index > index && stack -> index < min_index)
-		{
-			min_index = stack->index;
-			min_pos = target_pos;
-		}
-		if (stack -> index < min_index)
-		{
-			min_index = stack -> index;
-			min_pos = target_pos;
-		}
-		target_pos++;
-		stack = stack -> next_node;
+		current->position = position;
+		position++;
+		current = current->next_node;
 	}
-	if (min_index == INT_MAX)
-		return (min_pos);
-	return (target_pos);
-}
-
-void	do_move(t_stack_node **a, t_stack_node **b, int cost_a, int cost_b)
-{
-	if (cost_a > 0 && cost_b > 0)
-		rotate_both(a, b, &cost_a, &cost_b);
-	else if (cost_a < 0 && cost_b < 0)
-		reverse_rotate_both(a, b, &cost_a, &cost_b);
-	while (cost_a > 0)
+	position = 0;
+	current = b;
+	while (current)
 	{
-		ra(a);
-		cost_a--;
+		current->position = position;
+		position++;
+		current = current->next_node;
 	}
-	while (cost_a < 0)
-	{
-		rra(a);
-		cost_a++;
-	}
-	while (cost_b > 0)
-	{
-		rb(b);
-		cost_b--;
-	}
-	while (cost_b < 0)
-	{
-		rrb(b);
-		cost_b++;
-	}
-	pa(a,b);
-}
-
-void rotate_both(t_stack_node **a, t_stack_node **b, int *cost_a, int *cost_b)
-{
-    while (*cost_a > 0 && *cost_b > 0)
-    {
-        rr(a, b);
-        (*cost_a)--;
-        (*cost_b)--;
-    }
-}
-
-void reverse_rotate_both(t_stack_node **a, t_stack_node **b, int *cost_a, int *cost_b)
-{
-    while (*cost_a < 0 && *cost_b < 0)
-    {
-        rrr(a, b);
-        (*cost_a)++;
-        (*cost_b)++;
-    }
-}
+}*/

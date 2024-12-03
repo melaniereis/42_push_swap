@@ -110,7 +110,7 @@ deps:
 
 get_libft:
 	@printf "${CYAN}${BOLD}${BOOK} Getting Libft..${RESET}\n"
-	@git clone git@github.com:melaniereis/42_libft.git ${LIBFT_PATH}
+	@git clone git@github.com:melaniereis/libft.git ${LIBFT_PATH}
 	@printf "${GREEN}${BOLD}${ROCKET} ${WHITE}${LIBFT_ARC}${GREEN} successfully downloaded!${RESET}\n"
 
 ##bonus: ${BUILD_PATH} ${OBJS} ${LIBFT_ARC}

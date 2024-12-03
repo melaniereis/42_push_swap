@@ -23,6 +23,12 @@ typedef struct s_stack_node
 {
 	int					value;
 	int					index;
+	int					position;
+	int					cost_a;
+	int					cost_b;
+	char				move_a;
+	char				move_b;
+	struct s_stack_node	*target_node;
 	struct s_stack_node	*next_node;
 	struct s_stack_node	*prev_node;
 }		t_stack_node;
