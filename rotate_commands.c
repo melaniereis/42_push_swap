@@ -33,15 +33,18 @@ static void	rotate(t_stack_node **stack)
 void	ra(t_stack_node **a)
 {
 	rotate(a);
+	ft_printf("ra\n");
 }
 
 void	rb(t_stack_node **b)
 {
 	rotate(b);
+	ft_printf("rb\n");
 }
 
 void	rr(t_stack_node **a, t_stack_node **b)
 {
 	rotate(a);
 	rotate(b);
+	ft_printf("rr\n");
 }

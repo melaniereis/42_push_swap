@@ -35,15 +35,18 @@ static void	swap(t_stack_node **stack)
 void	sa(t_stack_node **a)
 {
 	swap(a);
+	ft_printf("sa\n");
 }
 
 void	sb(t_stack_node **b)
 {
 	swap(b);
+	ft_printf("sb\n");
 }
 
 void	ss(t_stack_node **a, t_stack_node **b)
 {
 	sa(a);
 	sb(b);
+	ft_printf("ss\n");
 }

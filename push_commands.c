@@ -46,9 +46,11 @@ static void	push(t_stack_node **dest, t_stack_node **src)
 void	pa(t_stack_node **a, t_stack_node **b)
 {
 	push(a, b);
+	ft_printf("pa\n");
 }
 
 void	pb(t_stack_node **b, t_stack_node **a)
 {
 	push(b, a);
+	ft_printf("pb\n");
 }
