@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 16:34:04 by meferraz          #+#    #+#             */
-/*   Updated: 2024/11/21 17:20:05 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/04 15:50:16 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/* Checks if a string represents a valid integer. */
 int	error_digit_and_sign(char *str_nb)
 {
 	int	i;
@@ -32,6 +33,7 @@ int	error_digit_and_sign(char *str_nb)
 	return (0);
 }
 
+/* Checks for duplicate numbers in the stack. */
 int	error_repetition(t_stack_node *a, int nb)
 {
 	if (!a)
@@ -45,6 +47,7 @@ int	error_repetition(t_stack_node *a, int nb)
 	return (0);
 }
 
+/* Frees a 2D array of strings. */
 void	free_matrix(char **argv)
 {
 	int	i;
@@ -57,6 +60,7 @@ void	free_matrix(char **argv)
 	free(argv);
 }
 
+/* Frees a linked list of stack nodes. */
 void	free_stack(t_stack_node **stack)
 {
 	t_stack_node	*temp;
@@ -74,6 +78,7 @@ void	free_stack(t_stack_node **stack)
 	*stack = NULL;
 }
 
+/* Frees the stack, matrix, and exits with an error message. */
 void	free_all_message(t_stack_node **a, char **argv, int split_flag)
 {
 	free_stack(a);

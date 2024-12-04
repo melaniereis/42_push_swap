@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tiny_sort.c                                        :+:      :+:    :+:   */
+/*   sorts.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 09:12:01 by meferraz          #+#    #+#             */
-/*   Updated: 2024/11/28 09:13:54 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/04 15:59:46 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,30 @@ void    sort_three(t_stack_node **a)
     if ((*a)->value > (*a)->next_node->value)
     	sa(a);
 }
-
-t_stack_node *find_highest_node(t_stack_node *a)
+void    sort_five(t_stack_node **a, t_stack_node **b)
 {
-    long    highest;
-    t_stack_node    *highest_node;
+    t_stack_node *lowest;
+    t_stack_node *second_lowest;
 
-    if (!a)
-        return (NULL);
-    highest_node = NULL;
-    highest = INT_MIN;
-    while (a)
+    lowest = find_lowest_node(*a);
+    second_lowest = find_second_lowest_node(*a);
+    while (*a != lowest)
     {
-        if (a -> value > highest)
-        {
-            highest = a -> value;
-            highest_node = a;
-        }
-        a = a -> next_node;
+        if ((*a)->next_node == lowest)
+            rra(a);
+        else
+            ra(a);
     }
-    return (highest_node);
+    pb(b, a);
+    while (*a != second_lowest)
+    {
+        if ((*a)->next_node == second_lowest)
+            rra(a);
+        else
+            ra(a);
+    }
+    pb(b, a);
+    sort_three(a);
+    pa(a, b);
+    pa(a, b);
 }

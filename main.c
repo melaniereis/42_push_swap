@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 12:58:37 by meferraz          #+#    #+#             */
-/*   Updated: 2024/11/21 15:33:32 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/04 16:00:23 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	main(int argc, char **argv)
@@ -37,53 +38,11 @@ int	main(int argc, char **argv)
 				sa(&a);
 		if (stack_len(a) == 3)
 			sort_three(&a);
+		if (stack_len(a) == 5)
+			sort_five(&a, &b);
 		if (stack_len(a) > 3)
 			sort_stacks(&a, &b, stack_len(a));
 	}
-	/*
-	// Initialize stack b
-    char *arr[] = {NULL};
-    stack_init(&b, arr, 0);
-
-    // Print stack a
-    t_stack_node *temp_a = a;
-    while(temp_a)
-    {
-        ft_printf("%d\n", temp_a->value);
-        temp_a = temp_a->next_node;
-    }
-
-    // Print stack b
-    t_stack_node *temp_b = b;
-    while(temp_b)
-    {
-        ft_printf("%d\n", temp_b->value);
-        temp_b = temp_b->next_node;
-    }
-	rrr(&a,&b);
-	// Print stack a
-    t_stack_node *temp_aa= a;
-    while(temp_aa)
-    {
-        ft_printf("%d\n", temp_aa->value);
-        temp_aa = temp_aa->next_node;
-    }
-
-    // Print stack b
-    t_stack_node *temp_bb = b;
-    while(temp_bb)
-    {
-        ft_printf("%d\n", temp_bb->value);
-        temp_bb = temp_bb->next_node;
-    }
-	*/
-	// Print stack a
-    t_stack_node *temp_aa= a;
-    while(temp_aa)
-    {
-        ft_printf("%d\n", temp_aa->value);
-        temp_aa = temp_aa->next_node;
-    }
 	free_stack(&a);
 	free_stack(&b);
 	if (split_flag)

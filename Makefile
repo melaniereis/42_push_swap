@@ -50,8 +50,8 @@ LIBFT_ARC = ${LIBFT_PATH}/libft.a
 # Source files for main library
 SRCS = ${addprefix ${SRC_PATH}/, errors.c  main.c rotate_commands.c \
 	   swap_commands.c stack_utils.c push_commands.c \
-	   reverse_rotate_commands.c stack_init.c sort_three.c sort_stacks.c\
-	   set_indices.c}
+	   reverse_rotate_commands.c stack_init.c sorts.c sorts_utils.c \
+	   sort_stacks.c set_indices.c}
 SRCS_BONUS = ${addprefix ${BONUS_PATH}/, }
 
 # Object files derived from source files
@@ -71,6 +71,9 @@ MKDIR_P = mkdir -p                # Command to create directories (with parent)
 INC = -I ${INC_PATH}              # Include path for header file
 MAKE = make --no-print-directory -C
 MAKE_EXTRA = make extra --no-print-directory -C
+
+VALGRIND = valgrind
+VALGRIND_FLAGS = --leak-check=full --show-leak-kinds=all --track-origins=yes
 
 #------------------------------------------------------------------------------#
 #                                    RULES                                     #
@@ -113,6 +116,8 @@ get_libft:
 	@git clone git@github.com:melaniereis/libft.git ${LIBFT_PATH}
 	@printf "${GREEN}${BOLD}${ROCKET} ${WHITE}${LIBFT_ARC}${GREEN} successfully downloaded!${RESET}\n"
 
+
+
 ##bonus: ${BUILD_PATH} ${OBJS} ${LIBFT_ARC}
 ##	@printf "${CYAN}${DIM}Compiling main.c for test...${RESET}\n"
 ##	@${CC} ${CCFLAGS} main.c ${OBJS} ${LDFLAGS} -o ${EXEC}
@@ -145,7 +150,23 @@ check_forbidden_functions: ${NAME}
 	else \
 		printf "${GREEN}${BOLD}${CHECK} No forbidden functions found${RESET}\n"; \
 	fi
-	
+
+##  Check for leaks  ##
+
+test_valgrind: ${NAME}
+	@printf "${YELLOW}${BOLD}Running tests with Valgrind...${RESET}\n"
+	@printf "\n${PURPLE}${BOLD}Testing file with Valgrind: ${NAME}${RESET}\n"
+	@VALGRIND_OUTPUT="$$(${VALGRIND} ${VALGRIND_FLAGS} ./${NAME} 2>&1)"
+	@if echo "$$VALGRIND_OUTPUT" | grep -q "definitely lost" || \
+		echo "$$VALGRIND_OUTPUT" | grep -q "indirectly lost" || \
+		echo "$$VALGRIND_OUTPUT" | grep -q "possibly lost" || \
+		echo "$$VALGRIND_OUTPUT" | grep -q "still reachable"; then \
+		printf "${RED}${BOLD}Memory leak detected!${RESET}\n"; \
+		echo "$$VALGRIND_OUTPUT" | grep -E "definitely|indirectly|possibly|still reachable"; \
+	else \
+		printf "${GREEN}${BOLD}No leaks detected.${RESET}\n"; \
+	fi
+
 ##  Cleaning Rules  ##
 
 clean:                       # Clean up object files and temporary build files 
