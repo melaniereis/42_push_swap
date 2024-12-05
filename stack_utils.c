@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   append_node.c                                      :+:      :+:    :+:   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 13:39:35 by meferraz          #+#    #+#             */
-/*   Updated: 2024/11/21 15:06:44 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/05 14:05:31 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@ void	append_node(t_stack_node **stack, int nbr)
 	if (!node)
 		return ;
 	node->value = nbr;
+	node->position = 0;
+	node->cost_a = 0;
+	node->cost_b = 0;
+	node->best_cost = 0;
+	node->move_a = NULL;
+	node->move_b = NULL;
+	node->target_node = NULL;
 	node->next_node = NULL;
 	if (*stack == NULL)
 	{

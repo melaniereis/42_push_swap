@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_commands.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:31:45 by meferraz          #+#    #+#             */
-/*   Updated: 2024/11/22 13:32:02 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:37:29 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,16 @@ static void	push(t_stack_node **dest, t_stack_node **src)
 		*dest = first_src;
 	}
 	first_src->prev_node = NULL;
-	/*t_stack_node *current = *dest;
-	while (current)
-	{
-		printf("%d\n", current -> value);
-		current = current -> next_node;
-	}
-	printf("-------------------\n");*/
 }
 
 void	pa(t_stack_node **a, t_stack_node **b)
 {
 	push(a, b);
-	//ft_printf("pa\n");
+	add_command("pa");
 }
 
 void	pb(t_stack_node **b, t_stack_node **a)
 {
 	push(b, a);
-	//ft_printf("pb\n");
+	add_command("pb");
 }

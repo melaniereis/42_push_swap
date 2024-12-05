@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 13:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/04 15:59:58 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:51:46 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ typedef struct s_stack_node
 	int					cost_a;
 	int					cost_b;
 	int					best_cost;
-	char				move_a;
-	char				move_b;
+	char				*move_a;
+	char				*move_b;
 	struct s_stack_node	*target_node;
 	struct s_stack_node	*next_node;
 	struct s_stack_node	*prev_node;
@@ -71,5 +71,9 @@ t_stack_node *find_second_lowest_node(t_stack_node *a);
 
 void	sort_stacks(t_stack_node **a, t_stack_node **b, int size);
 void	set_indices(t_stack_node **a);
+
+void flush_commands(void);
+void add_command(char *cmd);
+
 #endif
 

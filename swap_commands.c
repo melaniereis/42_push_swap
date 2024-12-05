@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap_commands.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 11:54:42 by meferraz          #+#    #+#             */
-/*   Updated: 2024/11/22 11:56:04 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:37:07 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,18 @@ static void	swap(t_stack_node **stack)
 void	sa(t_stack_node **a)
 {
 	swap(a);
-	//ft_printf("sa\n");
+	add_command("sa");
 }
 
 void	sb(t_stack_node **b)
 {
 	swap(b);
-	ft_printf("sb\n");
+	add_command("sb");
 }
 
 void	ss(t_stack_node **a, t_stack_node **b)
 {
 	sa(a);
 	sb(b);
-	ft_printf("ss\n");
+	add_command("ss");
 }

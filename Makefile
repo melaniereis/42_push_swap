@@ -51,7 +51,7 @@ LIBFT_ARC = ${LIBFT_PATH}/libft.a
 SRCS = ${addprefix ${SRC_PATH}/, errors.c  main.c rotate_commands.c \
 	   swap_commands.c stack_utils.c push_commands.c \
 	   reverse_rotate_commands.c stack_init.c sorts.c sorts_utils.c \
-	   sort_stacks.c set_indices.c}
+	   sort_stacks.c set_indices.c optimization.c}
 SRCS_BONUS = ${addprefix ${BONUS_PATH}/, }
 
 # Object files derived from source files

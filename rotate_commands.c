@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate_commands.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:35:36 by meferraz          #+#    #+#             */
-/*   Updated: 2024/11/22 14:35:54 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:38:03 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,18 @@ static void	rotate(t_stack_node **stack)
 void	ra(t_stack_node **a)
 {
 	rotate(a);
-	//ft_printf("ra\n");
+	add_command("ra");
 }
 
 void	rb(t_stack_node **b)
 {
 	rotate(b);
-	//ft_printf("rb\n");
+	add_command("rb");
 }
 
 void	rr(t_stack_node **a, t_stack_node **b)
 {
 	rotate(a);
 	rotate(b);
-	ft_printf("rr\n");
+	add_command("rr");
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_rotate_commands.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:57:35 by meferraz          #+#    #+#             */
-/*   Updated: 2024/11/22 14:57:49 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:37:49 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,18 @@ static void	reverse_rotate(t_stack_node **stack)
 void	rra(t_stack_node **a)
 {
 	reverse_rotate(a);
-	ft_printf("rra\n");
+	add_command("rra");
 }
 
 void	rrb(t_stack_node **b)
 {
 	reverse_rotate(b);
-	ft_printf("rrb\n");
+	add_command("rrb");
 }
 
 void	rrr(t_stack_node **a, t_stack_node **b)
 {
 	reverse_rotate(a);
 	reverse_rotate(b);
-	ft_printf("rrr\n");
+	add_command("rrr");
 }
