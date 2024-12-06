@@ -54,3 +54,42 @@ void    sort_five(t_stack_node **a, t_stack_node **b)
     pa(a, b);
     pa(a, b);
 }
+
+void	sort_stacks(t_stack_node **a, t_stack_node **b, int size)
+{
+	phase_one(a, b, size);
+	flush_commands();
+	phase_two(a, b);
+	flush_commands();
+	phase_three(a, size);
+	flush_commands();
+	/*t_stack_node *current;
+	t_stack_node	*current_b;
+	current = *a;
+	printf("-------STACK A------\n");
+	while (current)
+	{
+		printf("%d\n", current -> value);
+		current = current -> next_node;
+	}
+	printf("--------------------\n");
+	printf("-------STACK B------\n");
+	current_b = *b;
+	while (current_b)
+	{
+		printf("value: %d\n", current_b -> value);
+		printf("position: %d\n", current_b -> position);
+		printf("cost_a: %d\n", current_b -> cost_a);
+		printf("cost_b: %d\n", current_b -> cost_b);
+		printf("best_cost: %d\n", current_b -> best_cost);
+		printf("move_a: %s\n", current_b -> move_a);
+		printf("move_b: %s\n", current_b -> move_b);
+		if (current_b -> target_node != NULL)
+			printf("target_node: %d\n", current_b -> target_node->value);
+		else
+			printf("target_node: NULL\n");
+		current_b = current_b -> next_node;
+		printf("****************\n");
+	}
+	printf("--------------------\n");*/
+}

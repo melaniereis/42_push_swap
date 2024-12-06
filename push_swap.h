@@ -70,7 +70,20 @@ t_stack_node *find_second_lowest_node(t_stack_node *a);
 
 
 void	sort_stacks(t_stack_node **a, t_stack_node **b, int size);
+
+void	phase_one(t_stack_node **a, t_stack_node **b, int total_size);
+void	phase_two(t_stack_node **a, t_stack_node **b);
+void	phase_three(t_stack_node **a, int size);
+
 void	set_indices(t_stack_node **a);
+void	set_positions(t_stack_node *a, t_stack_node *b);
+void    set_target_node_for_b(t_stack_node *a, t_stack_node *b);
+void    set_costs(t_stack_node *a, t_stack_node *b);
+void set_best_cost_optimized(t_stack_node *a, t_stack_node *b);
+void	set_initial_moves(t_stack_node *b, int cost_ra_rb, int cost_rra_rrb, int cost_ra_rrb, int cost_rb_rra);
+
+int	ft_max_int(int a, int b);
+int ft_find_min_cost(int a, int b, int c, int d);
 
 void flush_commands(void);
 void add_command(char *cmd);
