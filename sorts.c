@@ -28,23 +28,26 @@ void    sort_five(t_stack_node **a, t_stack_node **b)
 {
     t_stack_node *lowest;
     t_stack_node *second_lowest;
+    int stack_size;
+
+    stack_size = stack_len(*a);
 
     lowest = find_lowest_node(*a);
     second_lowest = find_second_lowest_node(*a);
     while (*a != lowest)
     {
-        if ((*a)->next_node == lowest)
-            rra(a);
-        else
+        if (lowest->position <= stack_size / 2)
             ra(a);
+        else
+            rra(a);
     }
     pb(b, a);
     while (*a != second_lowest)
     {
-        if ((*a)->next_node == second_lowest)
-            rra(a);
-        else
+        if (second_lowest->position <= (stack_size - 1) / 2)
             ra(a);
+        else
+            rra(a);
     }
     pb(b, a);
     sort_three(a);

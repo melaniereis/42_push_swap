@@ -186,38 +186,18 @@ void	set_positions(t_stack_node *a, t_stack_node *b)
 	current = a;
 	while (current)
 	{
-		current->position = position;
-		position++;
+		current->position = position++;
 		current = current->next_node;
 	}
 	position = 0;
 	current = b;
 	while (current)
 	{
-		current->position = position;
-		position++;
+		current->position = position++;
 		current = current->next_node;
 	}
 }
 
-t_stack_node	*find_min_node(t_stack_node *stack)
-{
-	t_stack_node	*min_node;
-	int				min_value;
-
-	min_node = stack;
-	min_value = stack->value;
-	while (stack)
-	{
-		if (stack->value < min_value)
-		{
-			min_value = stack->value;
-			min_node = stack;
-		}
-		stack = stack->next_node;
-	}
-	return (min_node);
-}
 /*
  *	Best match is..
  *   | "The Smallest-bigger value" |
@@ -246,7 +226,7 @@ void    set_target_node_for_b(t_stack_node *a, t_stack_node *b)
 			}
 			current_a = current_a->next_node;
 		}
-		if (LONG_MAX == best_match_index)
+		if (best_match_index == LONG_MAX)
 			b->target_node = find_lowest_node(a);
 		else
 			b->target_node = target_node;
@@ -258,8 +238,8 @@ void    set_costs(t_stack_node *a, t_stack_node *b)
 {
     t_stack_node *curr_a;
     t_stack_node *curr_b;
-
-	curr_a = a;
+    
+    curr_a = a;
     while (curr_a)
     {
         curr_a->cost_a = curr_a->position;
@@ -269,7 +249,7 @@ void    set_costs(t_stack_node *a, t_stack_node *b)
     while (curr_b)
     {
         curr_b->cost_b = curr_b->position;
-		curr_b->cost_a = curr_b->target_node->position;
+        curr_b->cost_a = curr_b->target_node->position;
         curr_b = curr_b->next_node;
     }
 }
@@ -296,6 +276,7 @@ void set_best_cost_optimized(t_stack_node *a, t_stack_node *b)
         curr_b->best_cost = ft_find_min_cost(cost_ra_rb, cost_rra_rrb, cost_ra_rrb, cost_rb_rra);
         set_initial_moves(curr_b, cost_ra_rb, cost_rra_rrb, cost_ra_rrb, cost_rb_rra);
         curr_b = curr_b->next_node;
+        
     }
 }
 
@@ -397,10 +378,9 @@ void	execute_moves(t_stack_node **a, t_stack_node **b, t_stack_node *best_node)
 			ra(a);
 		else if (ft_strncmp(best_node->move_a, "RRA", 3) == 0)
 			rra(a);
-		set_positions(*a, *b);
-		if (ft_strncmp(best_node->move_a, "RB", 2) == 0)
+		if (ft_strncmp(best_node->move_b, "RB", 2) == 0)
 			rb(b);
-		else if (ft_strncmp(best_node->move_a, "RRB", 3) == 0)
+		else if (ft_strncmp(best_node->move_b, "RRB", 3) == 0)
 			rrb(b);
 		set_positions(*a, *b);
 		update_moves(best_node);
