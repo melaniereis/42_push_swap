@@ -3,15 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_rotate_commands.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:57:35 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/05 16:37:49 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/09 16:42:17 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
+** Performs a reverse rotation on the given stack, moving the last element 
+** to the front of the stack.
+*/
 static void	reverse_rotate(t_stack_node **stack)
 {
 	t_stack_node	*head;
@@ -24,26 +28,38 @@ static void	reverse_rotate(t_stack_node **stack)
 		return ;
 	head = *stack;
 	last = find_last_node(*stack);
-	last -> next_node = head;
-	new_last = last -> prev_node;
-	new_last -> next_node = NULL;
+	last->next_node = head;
+	new_last = last->prev_node;
+	new_last->next_node = NULL;
 	*stack = last;
 	(*stack)->prev_node = NULL;
-	head -> prev_node = last;
+	head->prev_node = last;
 }
 
+/*
+** Performs a reverse rotation on stack A and records the operation in 
+** command history.
+*/
 void	rra(t_stack_node **a)
 {
 	reverse_rotate(a);
 	add_command("rra");
 }
 
+/*
+** Performs a reverse rotation on stack B and records the operation in 
+** command history.
+*/
 void	rrb(t_stack_node **b)
 {
 	reverse_rotate(b);
 	add_command("rrb");
 }
 
+/*
+** Performs reverse rotations on both stacks A and B and records the 
+** operation in command history.
+*/
 void	rrr(t_stack_node **a, t_stack_node **b)
 {
 	reverse_rotate(a);

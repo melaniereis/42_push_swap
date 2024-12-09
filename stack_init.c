@@ -3,15 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   stack_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 13:14:35 by meferraz          #+#    #+#             */
-/*   Updated: 2024/11/21 14:54:28 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/09 16:50:19 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
+** Initializes stack A by parsing command-line arguments, checking for errors,
+** and appending values to the stack.
+*/
 void	stack_init(t_stack_node **a, char **argv, int split_flag)
 {
 	long	nb;

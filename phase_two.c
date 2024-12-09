@@ -3,21 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   phase_two.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:06:23 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/06 13:07:26 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/09 16:32:53 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void    do_best_move(t_stack_node **a, t_stack_node **b);
-static void    execute_moves(t_stack_node **a, t_stack_node **b, t_stack_node *best_node);
-static void    update_moves(t_stack_node *best_node);
+static void	do_best_move(t_stack_node **a, t_stack_node **b);
+static void	execute_moves(t_stack_node **a, t_stack_node **b,
+				t_stack_node *best_node);
+static void	update_moves(t_stack_node *best_node);
 
+/*
+** Function: phase_two
+** Description: Implements the second phase of the sorting algorithm.
+**              This phase processes elements in stack 'b', determining
+**              the best moves to make in order to place them into stack 'a'.
+**              It continues until all elements from stack 'b' are moved to
+**              stack 'a'.
+**
+** Parameters:
+** - t_stack_node **a: Pointer to the destination stack where elements from 
+**   stack 'b' will be pushed.
+** - t_stack_node **b: Pointer to the source stack containing elements to 
+**   be processed.
+*/
 void	phase_two(t_stack_node **a, t_stack_node **b)
-{	
+{
 	while (*b)
 	{
 		set_positions(*a, *b);
@@ -28,6 +43,10 @@ void	phase_two(t_stack_node **a, t_stack_node **b)
 	}
 }
 
+/*
+** Identifies and executes the best move for the current element 
+**              in stack 'b' based on previously calculated costs.
+*/
 static void	do_best_move(t_stack_node **a, t_stack_node **b)
 {
 	t_stack_node	*current;
@@ -50,7 +69,12 @@ static void	do_best_move(t_stack_node **a, t_stack_node **b)
 	pa(a, b);
 }
 
-static void	execute_moves(t_stack_node **a, t_stack_node **b, t_stack_node *best_node)
+/*
+** Executes a series of moves required to position the best node 
+**              correctly before it can be pushed onto stack 'a'.
+*/
+static void	execute_moves(t_stack_node **a, t_stack_node **b,
+	t_stack_node *best_node)
 {
 	while (best_node->position > 0 || best_node->target_node->position > 0)
 	{
@@ -67,6 +91,10 @@ static void	execute_moves(t_stack_node **a, t_stack_node **b, t_stack_node *best
 	}
 }
 
+/*
+** Updates move instructions for the given best node based on 
+**              its position.
+*/
 static void	update_moves(t_stack_node *best_node)
 {
 	if (best_node->position == 0)
