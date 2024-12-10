@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:35:36 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/09 16:42:58 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/10 14:22:36 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,28 +37,28 @@ static void	rotate(t_stack_node **stack)
 /*
 ** Performs a rotation on stack A and records the operation in command history.
 */
-void	ra(t_stack_node **a)
+void	ra(t_stack_node **a, t_cmd_buffer *cmd_buf)
 {
 	rotate(a);
-	add_command("ra");
+	add_command(cmd_buf, "ra");
 }
 
 /*
 ** Performs a rotation on stack B and records the operation in command history.
 */
-void	rb(t_stack_node **b)
+void	rb(t_stack_node **b, t_cmd_buffer *cmd_buf)
 {
 	rotate(b);
-	add_command("rb");
+	add_command(cmd_buf, "rb");
 }
 
 /*
 ** Performs rotations on both stacks A and B and records the operation 
 ** in command history.
 */
-void	rr(t_stack_node **a, t_stack_node **b)
+void	rr(t_stack_node **a, t_stack_node **b, t_cmd_buffer *cmd_buf)
 {
 	rotate(a);
 	rotate(b);
-	add_command("rr");
+	add_command(cmd_buf, "rr");
 }

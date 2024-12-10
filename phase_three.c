@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:07:39 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/09 15:43:39 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/10 14:25:25 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 ** - t_stack_node **a: Pointer to the stack to be sorted.
 ** - int size: The size of the stack.
 */
-void	phase_three(t_stack_node **a, int size)
+void	phase_three(t_stack_node **a, int size, t_cmd_buffer *cmd_buf)
 {
 	t_stack_node	*min_node;
 	int				min_pos;
@@ -33,8 +33,8 @@ void	phase_three(t_stack_node **a, int size)
 		min_node = find_lowest_node(*a);
 		min_pos = min_node->position;
 		if (min_pos > size / 2)
-			rra(a);
+			rra(a, cmd_buf);
 		else
-			ra(a);
+			ra(a, cmd_buf);
 	}
 }

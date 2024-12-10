@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 13:39:35 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/09 16:57:29 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/10 14:50:47 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_stack_node	*find_last_node(t_stack_node *head);
 /*
 ** Creates a new node with the given value and initializes its attributes.
 */
-static t_stack_node *create_node(int nbr)
+static t_stack_node	*create_node(int nbr)
 {
 	t_stack_node	*node;
 

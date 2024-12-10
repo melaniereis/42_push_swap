@@ -6,14 +6,11 @@
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:10:57 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/09 17:10:39 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/10 15:22:43 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	set_initial_moves(t_stack_node *b, int cost_ra_rb, 
-	int cost_rra_rrb, int cost_ra_rrb, int cost_rb_rra);
 
 /*
 ** Sets the position attribute for each node in stacks A and B.
@@ -77,8 +74,8 @@ void	set_target_node_for_b(t_stack_node *a, t_stack_node *b)
 */
 void	set_costs(t_stack_node *a, t_stack_node *b)
 {
-	t_stack_node *curr_a;
-	t_stack_node *curr_b;
+	t_stack_node	*curr_a;
+	t_stack_node	*curr_b;
 
 	curr_a = a;
 	while (curr_a)
@@ -101,25 +98,24 @@ void	set_costs(t_stack_node *a, t_stack_node *b)
 */
 void	set_best_cost_optimized(t_stack_node *a, t_stack_node *b)
 {
-	int size_a;
-	int size_b;
-	int cost_ra_rb;
-	int cost_rra_rrb;
-	int cost_ra_rrb;
-	int cost_rb_rra;
-	t_stack_node *curr_b;
+	int				size_a;
+	int				size_b;
+	t_cost			cost;
+	t_stack_node	*curr_b;
 
 	curr_b = b;
 	size_a = stack_len(a);
 	size_b = stack_len(b);
 	while (curr_b)
 	{
-		cost_ra_rb = ft_max_int(curr_b->cost_a, curr_b->cost_b);
-		cost_rra_rrb = ft_max_int(size_a - curr_b->cost_a, size_b - curr_b->cost_b);
-		cost_ra_rrb = curr_b->cost_a + (size_b - curr_b->cost_b);
-		cost_rb_rra = curr_b->cost_b + (size_a - curr_b->cost_a);
-		curr_b->best_cost = ft_find_min_cost(cost_ra_rb, cost_rra_rrb, cost_ra_rrb, cost_rb_rra);
-		set_initial_moves(curr_b, cost_ra_rb, cost_rra_rrb, cost_ra_rrb, cost_rb_rra);
-		curr_b = curr_b->next_node;	
-    }
+		cost.ra_rb = ft_max_int(curr_b->cost_a, curr_b->cost_b);
+		cost.rra_rrb = ft_max_int(size_a - curr_b->cost_a,
+				size_b - curr_b->cost_b);
+		cost.ra_rrb = curr_b->cost_a + (size_b - curr_b->cost_b);
+		cost.rb_rra = curr_b->cost_b + (size_a - curr_b->cost_a);
+		curr_b->best_cost = ft_find_min_cost(cost.ra_rb, cost.rra_rrb,
+				cost.ra_rrb, cost.rb_rra);
+		set_initial_moves(curr_b, &cost);
+		curr_b = curr_b->next_node;
+	}
 }

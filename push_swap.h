@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 13:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/09 17:11:26 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/10 15:12:01 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,23 @@ typedef struct s_stack_node
 	struct s_stack_node	*prev_node;// Pointer to the previous node in the stack
 }	t_stack_node;
 
+// Structure representing buffer to store move commands
+typedef struct s_cmd_buffer
+{
+	char	**commands;
+	int		index;
+	int		size;
+}	t_cmd_buffer;
+
+// Structure representing a data of costs for different moves
+typedef struct s_cost
+{
+	int	ra_rb;
+	int	rra_rrb;
+	int	ra_rrb;
+	int	rb_rra;
+}	t_cost;
+
 // Stack initialization and management functions
 void			stack_init(t_stack_node **a, char **argv, int split_flag);
 void			append_node(t_stack_node **stack, int nbr);
@@ -52,24 +69,25 @@ void			free_stack(t_stack_node **stack);
 void			free_all_message(t_stack_node **a, char **argv, int split_flag);
 
 // Basic operations on stacks
-void			sa(t_stack_node **a);
-void			sb(t_stack_node **b);
-void			ss(t_stack_node **a, t_stack_node **b);
+void			sa(t_stack_node **a, t_cmd_buffer *cmd_buf);
+void			sb(t_stack_node **b, t_cmd_buffer *cmd_buf);
+void			ss(t_stack_node **a, t_stack_node **b, t_cmd_buffer *cmd_buf);
 
-void			pa(t_stack_node **a, t_stack_node **b);
-void			pb(t_stack_node **b, t_stack_node **a);
+void			pa(t_stack_node **a, t_stack_node **b, t_cmd_buffer *cmd_buf);
+void			pb(t_stack_node **b, t_stack_node **a, t_cmd_buffer *cmd_buf);
 
-void			ra(t_stack_node **a);
-void			rb(t_stack_node **b);
-void			rr(t_stack_node **a, t_stack_node **b);
+void			ra(t_stack_node **a, t_cmd_buffer *cmd_buf);
+void			rb(t_stack_node **b, t_cmd_buffer *cmd_buf);
+void			rr(t_stack_node **a, t_stack_node **b, t_cmd_buffer *cmd_buf);
 
-void			rra(t_stack_node **a);
-void			rrb(t_stack_node **b);
-void			rrr(t_stack_node **a, t_stack_node **b);
+void			rra(t_stack_node **a, t_cmd_buffer *cmd_buf);
+void			rrb(t_stack_node **b, t_cmd_buffer *cmd_buf);
+void			rrr(t_stack_node **a, t_stack_node **b, t_cmd_buffer *cmd_buf);
 
 // Sorting functions for specific cases
-void			sort_three(t_stack_node **a);
-void			sort_five(t_stack_node **a, t_stack_node **b);
+void			sort_three(t_stack_node **a, t_cmd_buffer *cmd_buf);
+void			sort_five(t_stack_node **a, t_stack_node **b,
+					t_cmd_buffer *cmd_buf);
 
 // Node finding functions for sorting purposes
 t_stack_node	*find_highest_node(t_stack_node *a);
@@ -77,12 +95,15 @@ t_stack_node	*find_lowest_node(t_stack_node *a);
 t_stack_node	*find_second_lowest_node(t_stack_node *a);
 
 // Main sorting function that orchestrates sorting between two stacks
-void			sort_stacks(t_stack_node **a, t_stack_node **b, int size);
+void			sort_stacks(t_stack_node **a, t_stack_node **b,
+					int size, t_cmd_buffer *cmd_buf);
 
 // Phase functions for sorting algorithm implementation
-void			phase_one(t_stack_node **a, t_stack_node **b, int total_size);
-void			phase_two(t_stack_node **a, t_stack_node **b);
-void			phase_three(t_stack_node **a, int size);
+void			phase_one(t_stack_node **a, t_stack_node **b,
+					int total_size, t_cmd_buffer *cmd_buf);
+void			phase_two(t_stack_node **a, t_stack_node **b,
+					t_cmd_buffer *cmd_buf);
+void			phase_three(t_stack_node **a, int size, t_cmd_buffer *cmd_buf);
 
 // Functions for setting indices and calculating costs for moves
 void			set_indices(t_stack_node **a);
@@ -90,15 +111,14 @@ void			set_positions(t_stack_node *a, t_stack_node *b);
 void			set_target_node_for_b(t_stack_node *a, t_stack_node *b);
 void			set_costs(t_stack_node *a, t_stack_node *b);
 void			set_best_cost_optimized(t_stack_node *a, t_stack_node *b);
-void			set_initial_moves(t_stack_node *b, int cost_ra_rb, 
-	int cost_rra_rrb, int cost_ra_rrb, int cost_rb_rra);
+void			set_initial_moves(t_stack_node *b, t_cost *cost);
 
 // Utility functions for cost calculations and command management
 int				ft_max_int(int a, int b);
 int				ft_find_min_cost(int a, int b, int c, int d);
 
 // Command management functions for tracking operations performed during sorting
-void			add_command(char *cmd);
-void			flush_commands(void);
+void			add_command(t_cmd_buffer *cmd_buf, char *cmd);
+void			flush_commands(t_cmd_buffer *cmd_buf);
 
 #endif /* PUSH_SWAP_H */

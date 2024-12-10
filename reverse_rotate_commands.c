@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:57:35 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/09 16:42:17 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/10 14:24:07 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,29 +40,29 @@ static void	reverse_rotate(t_stack_node **stack)
 ** Performs a reverse rotation on stack A and records the operation in 
 ** command history.
 */
-void	rra(t_stack_node **a)
+void	rra(t_stack_node **a, t_cmd_buffer *cmd_buf)
 {
 	reverse_rotate(a);
-	add_command("rra");
+	add_command(cmd_buf, "rra");
 }
 
 /*
 ** Performs a reverse rotation on stack B and records the operation in 
 ** command history.
 */
-void	rrb(t_stack_node **b)
+void	rrb(t_stack_node **b, t_cmd_buffer *cmd_buf)
 {
 	reverse_rotate(b);
-	add_command("rrb");
+	add_command(cmd_buf, "rrb");
 }
 
 /*
 ** Performs reverse rotations on both stacks A and B and records the 
 ** operation in command history.
 */
-void	rrr(t_stack_node **a, t_stack_node **b)
+void	rrr(t_stack_node **a, t_stack_node **b, t_cmd_buffer *cmd_buf)
 {
 	reverse_rotate(a);
 	reverse_rotate(b);
-	add_command("rrr");
+	add_command(cmd_buf, "rrr");
 }

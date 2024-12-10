@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 09:12:01 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/09 16:49:49 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/10 15:19:49 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,62 +15,61 @@
 /*
 ** Sorts three elements in stack A.
 */
-void	sort_three(t_stack_node **a)
+void	sort_three(t_stack_node **a, t_cmd_buffer *cmd_buf)
 {
 	t_stack_node	*highest_node;
 
 	highest_node = find_highest_node(*a);
 	if (*a == highest_node)
-		ra(a);
+		ra(a, cmd_buf);
 	else if ((*a)->next_node == highest_node)
-		rra(a);
+		rra(a, cmd_buf);
 	if ((*a)->value > (*a)->next_node->value)
-		sa(a);
+		sa(a, cmd_buf);
 }
 
 /*
 ** Sorts five elements by moving the two lowest elements to stack B and 
 ** then sorting stack A with three elements before pushing them back.
 */
-void	sort_five(t_stack_node **a, t_stack_node **b)
+void	sort_five(t_stack_node **a, t_stack_node **b, t_cmd_buffer *cmd_buf)
 {
-	t_stack_node *lowest;
-	t_stack_node *second_lowest;
-	int stack_size;
+	t_stack_node	*lowest;
+	t_stack_node	*second_lowest;
 
-	stack_size = stack_len(*a);
 	lowest = find_lowest_node(*a);
 	second_lowest = find_second_lowest_node(*a);
 	while (*a != lowest)
 	{
-		if (lowest->position <= stack_size / 2)
-			ra(a);
+		if (lowest->position <= stack_len(*a) / 2)
+			ra(a, cmd_buf);
 		else
-			rra(a);
+			rra(a, cmd_buf);
 	}
-	pb(b, a);
+	pb(b, a, cmd_buf);
 	while (*a != second_lowest)
 	{
-		if (second_lowest->position <= (stack_size - 1) / 2)
-			ra(a);
+		if (second_lowest->position <= (stack_len(*a) - 1) / 2)
+			ra(a, cmd_buf);
 		else
-			rra(a);
+			rra(a, cmd_buf);
 	}
-	pb(b, a);
-	sort_three(a);
-	pa(a, b);
-	pa(a, b);
+	pb(b, a, cmd_buf);
+	sort_three(a, cmd_buf);
+	pa(a, b, cmd_buf);
+	pa(a, b, cmd_buf);
 }
 
 /*
 ** Orchestrates the sorting of stacks A and B based on the provided size.
 */
-void	sort_stacks(t_stack_node **a, t_stack_node **b, int size)
-{	
-	phase_one(a, b, size);
-	flush_commands();
-	phase_two(a, b);
-	flush_commands();
-	phase_three(a, size);
-	flush_commands();
+void	sort_stacks(t_stack_node **a, t_stack_node **b, int size,
+			t_cmd_buffer *cmd_buf)
+{
+	phase_one(a, b, size, cmd_buf);
+	flush_commands(cmd_buf);
+	phase_two(a, b, cmd_buf);
+	flush_commands(cmd_buf);
+	phase_three(a, size, cmd_buf);
+	flush_commands(cmd_buf);
 }

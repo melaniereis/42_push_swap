@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:31:45 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/09 16:41:32 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/10 14:22:13 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,18 @@ static void	push(t_stack_node **dest, t_stack_node **src)
 ** Pushes the top element from stack B onto stack A and 
 ** records the operation in command history.
 */
-void	pa(t_stack_node **a, t_stack_node **b)
+void	pa(t_stack_node **a, t_stack_node **b, t_cmd_buffer *cmd_buf)
 {
 	push(a, b);
-	add_command("pa");
+	add_command(cmd_buf, "pa");
 }
 
 /*
 ** Pushes the top element from stack A onto stack B and 
 ** records the operation in command history.
 */
-void	pb(t_stack_node **b, t_stack_node **a)
+void	pb(t_stack_node **b, t_stack_node **a, t_cmd_buffer *cmd_buf)
 {
 	push(b, a);
-	add_command("pb");
+	add_command(cmd_buf, "pb");
 }

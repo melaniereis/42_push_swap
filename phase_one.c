@@ -6,14 +6,15 @@
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:09:59 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/09 17:00:40 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/10 14:52:46 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	partition_stack(t_stack_node **a, t_stack_node **b, int *total_size);
-void	finalize_phase_one(t_stack_node **a);
+static void	partition_stack(t_stack_node **a,
+				t_stack_node **b, int *total_size,
+				t_cmd_buffer *cmd_buf);
 
 /*
 ** Function: phase_one
@@ -27,17 +28,21 @@ void	finalize_phase_one(t_stack_node **a);
 ** - t_stack_node **b: Pointer to the dest stack where elements are pushed.
 ** - int total_size: The total number of elements in stack 'a'.
 */
-void	phase_one(t_stack_node **a, t_stack_node **b, int total_size)
+void	phase_one(t_stack_node **a, t_stack_node **b,
+		int total_size, t_cmd_buffer *cmd_buf)
 {
 	while (total_size > 3 && !is_stack_sorted(*a))
 	{
-		partition_stack(a, b, &total_size);
+		partition_stack(a, b, &total_size, cmd_buf);
 	}
-	finalize_phase_one(a);
+	if (!is_stack_sorted(*a))
+		sort_three(a, cmd_buf);
 }
 
 /* Partition the stack by pushing elements from stack a to stack b */
-static void	partition_stack(t_stack_node **a, t_stack_node **b, int *total_size)
+static void	partition_stack(t_stack_node **a,
+		t_stack_node **b, int *total_size,
+		t_cmd_buffer *cmd_buf)
 {
 	int	lowest_third;
 	int	middle_third;
@@ -53,20 +58,13 @@ static void	partition_stack(t_stack_node **a, t_stack_node **b, int *total_size)
 	{
 		if ((*a)->index < middle_third && (*a)->index < third_largest_index)
 		{
-			pb(b, a);
+			pb(b, a, cmd_buf);
 			two_thirds--;
 			(*total_size)--;
 			if ((*b)->next_node && (*b)->index < lowest_third)
-				rb(b);
+				rb(b, cmd_buf);
 		}
 		else
-			ra(a);
+			ra(a, cmd_buf);
 	}
-}
-
-/* Finalize phase one by sorting the remaining elements in stack a */
-void	finalize_phase_one(t_stack_node **a)
-{
-	if (!is_stack_sorted(*a))
-		sort_three(a);
 }
