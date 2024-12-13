@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 16:34:04 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/04 15:50:16 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/12 10:05:55 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,13 @@ void	free_stack(t_stack_node **stack)
 }
 
 /* Frees the stack, matrix, and exits with an error message. */
-void	free_all_message(t_stack_node **a, char **argv, int split_flag)
+void	free_all_message(t_stack_node **a, char **argv, int split_flag,
+			t_cmd_buffer *cmd_buf)
 {
 	free_stack(a);
 	if (argv != NULL && split_flag)
 		free_matrix(argv);
 	write(1, "Error\n", 6);
+	free_cmd_buffer(cmd_buf);
 	exit(1);
 }

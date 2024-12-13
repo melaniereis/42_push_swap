@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 13:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/10 15:12:01 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/12 10:07:22 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,21 @@ typedef struct s_cost
 }	t_cost;
 
 // Stack initialization and management functions
-void			stack_init(t_stack_node **a, char **argv, int split_flag);
+void			stack_init(t_stack_node **a, char **argv, int split_flag,
+					t_cmd_buffer *cmd_buf);
 void			append_node(t_stack_node **stack, int nbr);
 t_stack_node	*find_last_node(t_stack_node *head);
 int				is_stack_sorted(t_stack_node *head);
 int				stack_len(t_stack_node *head);
 
-// Error handling functions
+// Error & free handling functions
 int				error_digit_and_sign(char *str_nb);
 int				error_repetition(t_stack_node *a, int nb);
 void			free_matrix(char **argv);
 void			free_stack(t_stack_node **stack);
-void			free_all_message(t_stack_node **a, char **argv, int split_flag);
-
+void			free_all_message(t_stack_node **a, char **argv, int split_flag,
+					t_cmd_buffer *cmd_buf);
+void			free_cmd_buffer(t_cmd_buffer *cmd_buf);
 // Basic operations on stacks
 void			sa(t_stack_node **a, t_cmd_buffer *cmd_buf);
 void			sb(t_stack_node **b, t_cmd_buffer *cmd_buf);

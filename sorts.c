@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 09:12:01 by meferraz          #+#    #+#             */
-/*   Updated: 2024/12/10 15:19:49 by meferraz         ###   ########.fr       */
+/*   Updated: 2024/12/12 11:31:08 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,17 @@ void	sort_five(t_stack_node **a, t_stack_node **b, t_cmd_buffer *cmd_buf)
 
 	lowest = find_lowest_node(*a);
 	second_lowest = find_second_lowest_node(*a);
-	while (*a != lowest)
-	{
-		if (lowest->position <= stack_len(*a) / 2)
-			ra(a, cmd_buf);
-		else
-			rra(a, cmd_buf);
-	}
+	while (*a != lowest && *a != second_lowest)
+		ra(a, cmd_buf);
 	pb(b, a, cmd_buf);
-	while (*a != second_lowest)
-	{
-		if (second_lowest->position <= (stack_len(*a) - 1) / 2)
-			ra(a, cmd_buf);
-		else
-			rra(a, cmd_buf);
-	}
+	while (*a != lowest && *a != second_lowest)
+		ra(a, cmd_buf);
 	pb(b, a, cmd_buf);
 	sort_three(a, cmd_buf);
 	pa(a, b, cmd_buf);
 	pa(a, b, cmd_buf);
+	if ((*a)->value > (*a)->next_node->value)
+		sa(a, cmd_buf);
 }
 
 /*

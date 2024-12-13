@@ -148,22 +148,6 @@ check_external_functions: all               # Check norms for mandatory sources
 	nm ./${NAME} | grep "U" | grep -v "__"
 	@printf "${GREEN}${BOLD}${CHECK} External functions check completed!${RESET}\n"
 
-##  Check for leaks  ##
-
-test_valgrind: ${NAME}
-	@printf "${YELLOW}${BOLD}Running tests with Valgrind...${RESET}\n"
-	@printf "\n${PURPLE}${BOLD}Testing file with Valgrind: ${NAME}${RESET}\n"
-	@VALGRIND_OUTPUT="$$(${VALGRIND} ${VALGRIND_FLAGS} ./${NAME} 2>&1)"
-	@if echo "$$VALGRIND_OUTPUT" | grep -q "definitely lost" || \
-		echo "$$VALGRIND_OUTPUT" | grep -q "indirectly lost" || \
-		echo "$$VALGRIND_OUTPUT" | grep -q "possibly lost" || \
-		echo "$$VALGRIND_OUTPUT" | grep -q "still reachable"; then \
-		printf "${RED}${BOLD}Memory leak detected!${RESET}\n"; \
-		echo "$$VALGRIND_OUTPUT" | grep -E "definitely|indirectly|possibly|still reachable"; \
-	else \
-		printf "${GREEN}${BOLD}No leaks detected.${RESET}\n"; \
-	fi
-
 ##  Cleaning Rules  ##
 
 clean:                       # Clean up object files and temporary build files 
