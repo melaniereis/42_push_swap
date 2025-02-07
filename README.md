@@ -62,7 +62,7 @@ The project revolves around efficiently sorting a stack of integers using two st
 ### 🔧 Setup
 
 ```bash
-git clone https://github.com/yourusername/push_swap.git
+git clone https://github.com/melaniereis/42_push_swap.git
 cd push_swap
 make
 ```
