@@ -1,6 +1,7 @@
 # 🌀 Push Swap
 
 <div align="center">
+  
 ![Sorting Animation](https://c.tenor.com/jhDKfwDdMfwAAAAd/tenor.gif)
 
 **Push Swap** - My custom solution for the 42 coding school challenge, focusing on stack sorting efficiency with a unique algorithm.
