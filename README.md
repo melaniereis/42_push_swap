@@ -34,6 +34,10 @@
 </details>
 
 ---
+## 🎥 Video Demonstration
+
+Watch the video showcasing the **Push Swap** sorting process here:  
+[Push Swap Sorting Video](https://github.com/melaniereis/42_push_swap/push_swap_vis.mp4)
 
 ## 🔍 Overview
 
