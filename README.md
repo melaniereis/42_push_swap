@@ -34,16 +34,14 @@
 </details>
 
 ---
-## 🎥 Video Demonstration
-
-Watch the video showcasing the **Push Swap** sorting process here:  
-[Push Swap Sorting Video](https://github.com/melaniereis/42_push_swap/blob/main/push_swap_vis.mp4)
 
 ## 🔍 Overview
 
 **Push Swap** is an engaging project where the task is to sort integers between two stacks (`a` and `b`) using a limited set of operations. This implementation employs a custom algorithm inspired by but not limited to traditional methods, aiming for the least number of operations possible.
 
 The project revolves around efficiently sorting a stack of integers using two stacks and a predefined set of operations. The goal is to minimize the number of operations while ensuring the stack is sorted in ascending order.
+
+[Push Swap Sorting Video]([https://github.com/melaniereis/42_push_swap/blob/main/push_swap_visualizer.gif])
 
 ---
 
