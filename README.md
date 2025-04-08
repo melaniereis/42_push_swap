@@ -41,7 +41,7 @@
 
 The project revolves around efficiently sorting a stack of integers using two stacks and a predefined set of operations. The goal is to minimize the number of operations while ensuring the stack is sorted in ascending order.
 
-[Push Swap Sorting Video]([https://github.com/melaniereis/42_push_swap/blob/main/push_swap_visualizer.gif])
+![Push Swap Sorting Video]([https://github.com/melaniereis/42_push_swap/blob/main/push_swap_visualizer.gif])
 
 ---
 
